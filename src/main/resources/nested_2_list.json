@@ -1,0 +1,277 @@
+{
+
+    "BuildName": "RavenDB Unstable v2.5",
+
+    "IsUnstable": true,
+
+    "Version": "2509-Unstable",
+
+    "PublishedAt": "2013-02-26T12:06:12.0000000",
+
+    "DownloadsIds": [],
+
+    "Changes": [
+
+        {
+
+            "Commiter": {
+
+                "Email": "david@davidwalker.org",
+
+                "Name": "David Walker"
+
+            },
+
+            "Version": "17c661cb158d5e3c528fe2c02a3346305f0234a3",
+
+            "Href": "/app/rest/changes/id:21039",
+
+            "TeamCityId": 21039,
+
+            "Username": "david walker",
+
+            "Comment": "Do not save Has-Api-Key header to metadata\n",
+
+            "Date": "2013-02-20T23:22:43.0000000",
+
+            "Files": [
+
+                "Raven.Abstractions/Extensions/MetadataExtensions.cs"
+
+            ]
+
+        },
+
+        {
+
+            "Commiter": {
+
+                "Email": "david@davidwalker.org",
+
+                "Name": "David Walker"
+
+            },
+
+            "Version": "5ffb4d61ad9102696948f6678bbecac88e1dc039",
+
+            "Href": "/app/rest/changes/id:21040",
+
+            "TeamCityId": 21040,
+
+            "Username": "david walker",
+
+            "Comment": "Do not save IIS Application Request Routing headers to metadata\n",
+
+            "Date": "2013-02-20T23:23:59.0000000",
+
+            "Files": [
+
+                "Raven.Abstractions/Extensions/MetadataExtensions.cs"
+
+            ]
+
+        },
+
+        {
+
+            "Commiter": {
+
+                "Email": "ayende@ayende.com",
+
+                "Name": "Ayende Rahien"
+
+            },
+
+            "Version": "5919521286735f50f963824a12bf121cd1df4367",
+
+            "Href": "/app/rest/changes/id:21035",
+
+            "TeamCityId": 21035,
+
+            "Username": "ayende rahien",
+
+            "Comment": "Better disposal\n",
+
+            "Date": "2013-02-26T10:16:45.0000000",
+
+            "Files": [
+
+                "Raven.Client.WinRT/MissingFromWinRT/ThreadSleep.cs"
+
+            ]
+
+        },
+
+        {
+
+            "Commiter": {
+
+                "Email": "ayende@ayende.com",
+
+                "Name": "Ayende Rahien"
+
+            },
+
+            "Version": "c93264e2a94e2aa326e7308ab3909aa4077bc3bb",
+
+            "Href": "/app/rest/changes/id:21036",
+
+            "TeamCityId": 21036,
+
+            "Username": "ayende rahien",
+
+            "Comment": "Will ensure that the value is always positive or zero (never negative).\nWhen using numeric calc, will div by 1,024 to get more concentration into buckets.\n",
+
+            "Date": "2013-02-26T10:17:23.0000000",
+
+            "Files": [
+
+                "Raven.Database/Indexing/IndexingUtil.cs"
+
+            ]
+
+        },
+
+        {
+
+            "Commiter": {
+
+                "Email": "ayende@ayende.com",
+
+                "Name": "Ayende Rahien"
+
+            },
+
+            "Version": "7bf51345d39c3993fed5a82eacad6e74b9201601",
+
+            "Href": "/app/rest/changes/id:21037",
+
+            "TeamCityId": 21037,
+
+            "Username": "ayende rahien",
+
+            "Comment": "Fixing a bug where we wouldn't decrement reduce stats for an index when multiple values from the same bucket are removed\n",
+
+            "Date": "2013-02-26T10:53:01.0000000",
+
+            "Files": [
+
+                "Raven.Database/Indexing/MapReduceIndex.cs",
+
+                "Raven.Database/Storage/Esent/StorageActions/MappedResults.cs",
+
+                "Raven.Database/Storage/IMappedResultsStorageAction.cs",
+
+                "Raven.Database/Storage/Managed/MappedResultsStorageAction.cs",
+
+                "Raven.Tests/Issues/RavenDB_784.cs",
+
+                "Raven.Tests/Storage/MappedResults.cs",
+
+                "Raven.Tests/Views/ViewStorage.cs"
+
+            ]
+
+        },
+
+        {
+
+            "Commiter": {
+
+                "Email": "ayende@ayende.com",
+
+                "Name": "Ayende Rahien"
+
+            },
+
+            "Version": "ff2c5b43eba2a8a2206152658b5e76706e12945c",
+
+            "Href": "/app/rest/changes/id:21038",
+
+            "TeamCityId": 21038,
+
+            "Username": "ayende rahien",
+
+            "Comment": "No need for so many repeats\n",
+
+            "Date": "2013-02-26T11:27:49.0000000",
+
+            "Files": [
+
+                "Raven.Tests/Bugs/MultiOutputReduce.cs"
+
+            ]
+
+        },
+
+        {
+
+            "Commiter": {
+
+                "Email": "ayende@ayende.com",
+
+                "Name": "Ayende Rahien"
+
+            },
+
+            "Version": "0620c74e51839972554fab3fa9898d7633cfea6e",
+
+            "Href": "/app/rest/changes/id:21041",
+
+            "TeamCityId": 21041,
+
+            "Username": "ayende rahien",
+
+            "Comment": "Merge branch 'master' of https://github.com/cloudbirdnet/ravendb into 2.1\n",
+
+            "Date": "2013-02-26T11:41:39.0000000",
+
+            "Files": [
+
+                "Raven.Abstractions/Extensions/MetadataExtensions.cs"
+
+            ]
+
+        }
+
+    ],
+
+    "ResolvedIssues": [],
+
+    "Contributors": [
+
+        {
+
+            "FullName": "Ayende Rahien",
+
+            "Email": "ayende@ayende.com",
+
+            "EmailHash": "730a9f9186e14b8da5a4e453aca2adfe"
+
+        },
+
+        {
+
+            "FullName": "David Walker",
+
+            "Email": "david@davidwalker.org",
+
+            "EmailHash": "4e5293ab04bc1a4fdd62bd06e2f32871"
+
+        }
+
+    ],
+
+    "BuildTypeId": "bt8",
+
+    "Href": "/app/rest/builds/id:588",
+
+    "ProjectName": "RavenDB",
+
+    "TeamCityId": 588,
+
+    "ProjectId": "project3",
+
+    "Number": 2509
+
+}

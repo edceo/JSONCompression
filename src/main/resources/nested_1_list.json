@@ -1,9 +1,6 @@
 [
   {
     "id": "0001",
-    "type": "donut",
-    "name": "Cake",
-    "ppu": 0.55,
     "batters":
     {
       "batter":
@@ -14,6 +11,9 @@
         { "id": "1004", "type": "Devil's Food" }
       ]
     },
+    "type": "donut",
+    "name": "Cake",
+    "ppu": 0.55,
     "topping":
     [
       { "id": "5001", "type": "None" },
