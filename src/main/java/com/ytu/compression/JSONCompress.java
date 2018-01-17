@@ -17,6 +17,7 @@ public class JSONCompress {
 
     private static List<String> strings = new ArrayList<>();
     private static List<Integer> integers = new ArrayList<>();
+    private static List<Long> longs = new ArrayList<>();
     private static List<Double> doubles = new ArrayList<>();
     private static List originalDictionary = new ArrayList();
     private static List<String> tokens = new ArrayList<>();
@@ -30,6 +31,8 @@ public class JSONCompress {
                 JSONConst.DICT_DELIMETER +
                 String.join(JSONConst.OBJECT_DELIMETER, integers.stream().map(String::valueOf).collect(Collectors.toList())) +
                 JSONConst.DICT_DELIMETER +
+                String.join(JSONConst.OBJECT_DELIMETER, longs.stream().map(String::valueOf).collect(Collectors.toList())) +
+                JSONConst.DICT_DELIMETER +
                 String.join(JSONConst.OBJECT_DELIMETER, doubles.stream().map(String::valueOf).collect(Collectors.toList())) +
                 JSONConst.DICT_DELIMETER +
                 recursiveParser(ast);
@@ -41,7 +44,8 @@ public class JSONCompress {
 
         String stringRawDict = rawDicts[0];
         String integerRawDict = rawDicts[1];
-        String doubleRawDict = rawDicts[2];
+        String longRawDict = rawDicts[2];
+        String doubleRawDict = rawDicts[3];
 
         //String Dict
         if (!StringUtils.isEmpty(stringRawDict)) {
@@ -61,6 +65,15 @@ public class JSONCompress {
             }
         }
 
+        //Long Dict
+        if (!StringUtils.isEmpty(longRawDict)) {
+            String[] longRawDictSplit = StringUtils.split(longRawDict, JSONConst.OBJECT_DELIMETER);
+
+            for (String aLongRawDictSplit : longRawDictSplit) {
+                originalDictionary.add(JSONUtil.base36To10Long(aLongRawDictSplit));
+            }
+        }
+
         //Double Dict
         if (!StringUtils.isEmpty(doubleRawDict)) {
             String[] doubleRawDictSplit = StringUtils.split(doubleRawDict, JSONConst.OBJECT_DELIMETER);
@@ -72,8 +85,8 @@ public class JSONCompress {
 
         //Tokenize Structure
         StringBuilder base36Number = new StringBuilder();
-        for (int i = 0; i < rawDicts[3].length(); i++) {
-            String token = String.valueOf(rawDicts[3].charAt(i));
+        for (int i = 0; i < rawDicts[4].length(); i++) {
+            String token = String.valueOf(rawDicts[4].charAt(i));
             if (tokenChecker(token)) {
                 if (!StringUtils.isEmpty(base36Number.toString())) {
                     tokens.add(String.valueOf(JSONUtil.base36To10(base36Number.toString())));
@@ -234,6 +247,18 @@ public class JSONCompress {
 
         }
 
+
+        if (object instanceof Long) {
+            Long number = (Long) object;
+            int index = longs.indexOf(number);
+            if (index == -1) {
+                longs.add(number);
+                index = longs.size() - 1;
+            }
+            return new Field(JSONConstant.LONG_TOKEN_TYPE, String.valueOf(index));
+
+        }
+
         if (object instanceof Double) {
             Double number = (Double) object;
             int index = doubles.indexOf(number);
@@ -250,7 +275,7 @@ public class JSONCompress {
             return new Field(JSONConstant.BOOLEAN_TOKEN_TYPE, bool ? JSONConst.TOKEN_TRUE : JSONConst.TOKEN_FALSE);
         }
 
-        return null;
+        return object;
     }
 
     private static String recursiveParser(Object object) {
@@ -275,8 +300,10 @@ public class JSONCompress {
                 return JSONUtil.base10To36(field.getIndex());
             case INTEGER_TOKEN_TYPE:
                 return JSONUtil.base10To36(String.valueOf(strings.size() + Integer.valueOf(field.getIndex())));
+            case LONG_TOKEN_TYPE:
+                return JSONUtil.base10To36Long(String.valueOf(strings.size() + integers.size() + Integer.valueOf(field.getIndex())));
             case DOUBLE_TOKEN_TYPE:
-                return JSONUtil.base10To36(String.valueOf(strings.size() + integers.size() + Integer.valueOf(field.getIndex())));
+                return JSONUtil.base10To36(String.valueOf(strings.size() + integers.size() + longs.size()+ Integer.valueOf(field.getIndex())));
             case BOOLEAN_TOKEN_TYPE:
                 return field.getIndex();
             case NULL_TOKEN_TYPE:

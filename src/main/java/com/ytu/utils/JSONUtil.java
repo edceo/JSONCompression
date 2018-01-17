@@ -41,7 +41,15 @@ public class JSONUtil {
         return Integer.toString(Integer.valueOf(string), 36).toUpperCase();
     }
 
+    public static String base10To36Long(String string) {
+        return Long.toString(Long.valueOf(string), 36).toUpperCase();
+    }
+
     public static Integer base36To10(String s) {
         return Integer.parseInt(s, 36);
+    }
+
+    public static Long base36To10Long(String s) {
+        return Long.parseLong(s, 36);
     }
 }

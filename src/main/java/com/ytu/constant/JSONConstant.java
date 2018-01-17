@@ -18,6 +18,7 @@ public enum JSONConstant {
     INTEGER_TOKEN_TYPE("integers"),
     DOUBLE_TOKEN_TYPE("floats"),
     BOOLEAN_TOKEN_TYPE("boolean"),
+    LONG_TOKEN_TYPE("longs"),
     OBJECT_DELIMETER("|"),
     DICT_DELIMETER("^"),
     DICT_OBJECT_TOKEN("$"),

@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 public class App {
 
     private static final String DIR_NAME = "/Users/yusufonder/IdeaProjects/JSONCompression/src/main/resources/";
-    private static final Path JSON_FILE_NAME = Paths.get(DIR_NAME + "bitcoin.json");
+    private static final Path JSON_FILE_NAME = Paths.get(DIR_NAME + "raw.json");
     private static final Path ZSTD_FILE_NAME = Paths.get(DIR_NAME + "comp.zstd");
     private static final Path GZIP_FILE_NAME = Paths.get(DIR_NAME + "comp.gzip");
     private static final Path COMP_FILE_NAME = Paths.get(DIR_NAME + "comp.json");
@@ -24,11 +24,15 @@ public class App {
         String lines = FileUtil.readFileLines(JSON_FILE_NAME.toFile());
         String pack = JSONCompress.pack(StringUtils.trim(lines).replace("\n", ""));
         FileUtil.writeFile(COMP_FILE_NAME.toFile(), pack.getBytes());
-        System.out.println("ORIGINAL FILE LENGTH -> " + JSON_FILE_NAME.toFile().length() / 1024);
-        System.out.println("COMP FILE LENGTH -> " + COMP_FILE_NAME.toFile().length() / 1024);
+        long json = JSON_FILE_NAME.toFile().length() / 1024;
+        System.out.println("ORIGINAL FILE LENGTH -> " + json);
+        long comp = COMP_FILE_NAME.toFile().length() / 1024;
+        System.out.println("COMP FILE LENGTH -> " + comp);
         zstd(pack);
         gzip(pack);
+        //System.out.println(JSONCompress.unpack(pack));
 
+        System.out.println("RATIO -> " + comp / (double)json);
 
     }
 
@@ -38,14 +42,12 @@ public class App {
         FileUtil.writeFile(ZSTD_FILE_NAME.toFile(), compress);
         System.out.println("ZSTD FILE LENGTH -> " + ZSTD_FILE_NAME.toFile().length() / 1024);
         byte[] decompress = Zstd.decompress(compress, (int) Zstd.decompressedSize(compress));
-        System.out.println(JSONCompress.unpack(new String(decompress)));
     }
 
     private static void gzip(String pack) throws IOException {
         FileUtil.gzipComp(pack, GZIP_FILE_NAME.toFile());
         System.out.println("GZIP FILE LENGTH -> " + GZIP_FILE_NAME.toFile().length() / 1024);
         String s = FileUtil.gzipDecomp(GZIP_FILE_NAME.toFile());
-        JSONCompress.unpack(s);
 
     }
 }
